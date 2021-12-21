@@ -20,19 +20,8 @@ player.on(
   }, 1000),
 );
 
-player
-  .setCurrentTime(localStorage.getItem(STORAGE_KEY))
-  .then(function (seconds) {
-    // seconds = the actual time that the player seeked to
-  })
-  .catch(function (error) {
-    switch (error.name) {
-      case 'RangeError':
-        // the time was less than 0 or greater than the video’s duration
-        break;
+const saveTime = localStorage.getItem(STORAGE_KEY);
 
-      default:
-        // some other error occurred
-        break;
-    }
-  });
+if (saveTime) {
+  player.setCurrentTime(localStorage.getItem(STORAGE_KEY));
+}
